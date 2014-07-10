@@ -15,6 +15,10 @@ Controller.open(function(_) {
       function mousemove(e) {
         if (!cursor.anticursor) cursor.startSelection();
         ctrlr.seek($(e.target), e.pageX, e.pageY).cursor.select();
+
+        // [Eoghan]: Unbinding as I don't want this to get called twice.
+        // https://github.com/mathquill/mathquill/issues/312
+        if (e.target) $(e.target.ownerDocument).unbind('mousemove', docmousemove);
       }
 
       // docmousemove is attached to the document, so that
