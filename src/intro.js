@@ -8,11 +8,9 @@
  * one at http://mozilla.org/MPL/2.0/.
  */
 
-(function() {
+define(['vendor/dom'], function (jQuery) {
 
-var jQuery = window.jQuery,
-  undefined,
-  mqCmdId = 'mathquill-command-id',
+var mqCmdId = 'mathquill-command-id',
   mqBlockId = 'mathquill-block-id',
   min = Math.min,
   max = Math.max;
