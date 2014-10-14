@@ -82,17 +82,7 @@
   }
   .mq-overline {
     margin-top: 0.2em;
-
-    &:before {
-      display: block;
-      position: relative;
-      top: 0.1em;
-      right: -0.1em;
-      font-size: 0.5em;
-      line-height: 0em;
-      content: '\27A4';
-      text-align: right;
-    }
+    position: relative;
 
     .mq-overline-inner {
       display: inline-block;
@@ -108,20 +98,26 @@
         display: inline-block;
       }
 
-      .mq-overline-inner-before {
+      .mq-overline-inner-right {
         display: block;
         position: absolute;
         top: -0.5em;
-        left: -0.1em;
-        font-size: 0.5em;
+        right: -0.3em;
+        font-size: 0.75em;
+        font-family: 'LearnosityIconsRegular';
         line-height: 1em;
         text-align: right;
-        -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        -ms-filter: "fliph";
-        filter: fliph;
+      }
+
+      .mq-overline-inner-left {
+        display: block;
+        position: absolute;
+        top: -0.5em;
+        left: -0.3em;
+        font-size: 0.75em;
+        font-family: 'LearnosityIconsRegular';
+        line-height: 1em;
+        text-align: left;
       }
     }
   }
@@ -140,6 +136,11 @@
         margin-top: 0.1em;
         display: inline-block;
       }
+
+      .mq-oversegment-inner-right,
+      .mq-oversegment-inner-left {
+        display: none;
+      }
     }
   }
   .mq-underline {
@@ -151,20 +152,11 @@
   }
   .mq-overarrow {
     margin-top: 0.2em;
-
-    &:before {
-      display: block;
-      position: relative;
-      top: 0.1em;
-      right: -0.1em;
-      font-size: 0.5em;
-      line-height: 0em;
-      content: '\27A4';
-      text-align: right;
-    }
+    position: relative;
 
     .mq-overarrow-inner {
       display: inline-block;
+      position: relative;
       padding-top: 0.2em;
       border-top: 1px solid black;
       min-width: 1em;
@@ -175,14 +167,38 @@
         margin-top: 0.1em;
         display: inline-block;
       }
+
+      .mq-overarrow-inner-right {
+        display: block;
+        position: absolute;
+        top: -0.5em;
+        right: -0.3em;
+        font-size: 0.75em;
+        font-family: 'LearnosityIconsRegular';
+        line-height: 1em;
+        text-align: right;
+      }
+
+      .mq-overarrow-inner-left {
+        display: none;
+        position: absolute;
+        top: -0.5em;
+        left: -0.3em;
+        font-size: 0.75em;
+        font-family: 'LearnosityIconsRegular';
+        line-height: 1em;
+        text-align: left;
+      }
     }
-    &.mq-arrow-left:before {
-      -moz-transform: scaleX(-1);
-      -o-transform: scaleX(-1);
-      -webkit-transform: scaleX(-1);
-      transform: scaleX(-1);
-      filter: FlipH;
-      -ms-filter: "FlipH";
+    &.mq-arrow-left {
+      .mq-overarrow-inner {
+        .mq-overarrow-inner-right {
+          display: none;
+        }
+        .mq-overarrow-inner-left {
+          display: block;
+        }
+      }
     }
   }
   .mq-xarrow {
@@ -240,7 +256,7 @@
   //   its contents, rather than always being as wide as the subscript.
   //   See also .fraction
   .mq-supsub {
-    font-size: 90%;
+    font-size: 0.7em;
     vertical-align: -.5em;
     &.mq-limit {
       font-size: 80%;
@@ -289,7 +305,7 @@
   }
 
   sup.mq-nthroot {
-    font-size: 80%;
+    font-size: 0.7em;
     vertical-align: 0.8em;
     margin-right: -.6em;
     margin-left: .2em;
@@ -306,6 +322,7 @@
     -ms-transform-origin: bottom center;
     -o-transform-origin: bottom center;
     transform-origin: bottom center;
+    color: black;
 
     &.mq-ghost { color: silver; }
 
@@ -402,8 +419,6 @@
     font-size: .8em;
 
     .mq-empty-box {
-      padding-left: .15em;
-      padding-right: .2em;
       font-size: 1.25em;
 
       &.mq-empty {
@@ -491,4 +506,16 @@
     margin-right: 0.1em;
   }
 
+  .mq-parallelogram {
+    position: relative;
+    overflow: hidden;
+    line-height: 1em;
+    margin-top: -0.5em;
+
+    .mq-parallelogram-inner {
+      position: relative;
+      top: 0.23em;
+      font-size: 2em;
+    }
+  }
 }
