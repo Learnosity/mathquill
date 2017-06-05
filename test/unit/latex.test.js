@@ -137,6 +137,8 @@ suite('latex', function() {
     assertParsesLatex('\\lrncuberoot{a}', '\\sqrt[3]{a}');
     assertParsesLatex('\\lrnplaceholder{a}', 'a');
     assertParsesLatex('\\lrnexponent{a}{b}', 'a^b');
+    assertParsesLatex('\\lrnexponent{a}{}', 'a^{ }');
+    assertParsesLatex('\\lrnexponent{aa}{bb}', 'aa^{bb}');
     assertParsesLatex('\\lrnsquaredexponent{a}', 'a^2');
     assertParsesLatex('\\lrnsubscript{a}{b}', 'a_b');
     assertParsesLatex('\\longdiv{x}');
