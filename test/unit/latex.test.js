@@ -152,6 +152,9 @@ suite('latex', function() {
     assertParsesLatex('\\xrightarrow[under]{over}');
     assertParsesLatex('\\xleftarrow{over}');
     assertParsesLatex('\\xleftarrow[under]{over}');
+    assertParsesLatex('\\overarc{ab}');
+    assertParsesLatex('\\underarc{ab}');
+    assertParsesLatex('\\overarc{\\underarc{ab}}');
   });
 
   suite('public API', function() {

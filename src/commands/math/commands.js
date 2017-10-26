@@ -721,6 +721,39 @@ LatexCmds.overset = P(MathCommand, function(_, super_) {
   };
 });
 
+var OverUnderArc = P(MathCommand, function(_, super_) {
+  _.reflow = function() {
+      var arc = this.jQ.find('.mq-arc');
+      scale(arc, this.jQ.innerWidth()/arc.innerWidth(), 1);
+  }
+});
+
+LatexCmds.overarc = P(OverUnderArc, function(_, super_) {
+  _.ctrlSeq = '\\overarc';
+  _.htmlTemplate =
+      '<span class="mq-overarc mq-overunder mq-non-leaf">'
+    +   '<span class="mq-over">'
+    +     '<span class="mq-arc mq-scaled">&frown;</span>'
+    +     '<span style="display:inline-block;width:0">&nbsp;</span>'
+    +   '</span>'
+    +   '<span class="mq-under">&0</span>'
+    + '</span>'
+  ;
+});
+
+LatexCmds.underarc = P(OverUnderArc, function(_, super_) {
+  _.ctrlSeq = '\\underarc';
+  _.htmlTemplate =
+      '<span class="mq-underarc mq-overunder mq-non-leaf">'
+    +   '<span class="mq-over">&0</span>'
+    +   '<span class="mq-under">'
+    +     '<span class="mq-arc mq-scaled">&smile;</span>'
+    +     '<span style="display:inline-block;width:0">&nbsp;</span>'
+    +   '</span>'
+    + '</span>'
+  ;
+});
+
 var SquareRoot =
 LatexCmds.sqrt =
 LatexCmds['√'] = P(MathCommand, function(_, super_) {

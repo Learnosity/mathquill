@@ -517,6 +517,25 @@
   }
 
   ////
+  // \overarc & \underarc
+  // Arc above / below math block
+  .mq-overunder {
+    &.mq-overarc .mq-under,
+    &.mq-underarc .mq-over {
+      display: block;
+    }
+    &.mq-underarc .mq-under {
+      float: left;
+    }
+    .mq-arc {
+      position: absolute;
+      left: 0;
+      transform-origin: left;
+      font-weight: bold;
+    }
+  }
+
+  ////
   // \sqrt
   // square roots
   .mq-sqrt-prefix {
