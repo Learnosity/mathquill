@@ -461,6 +461,11 @@ suite('Public API', function() {
       mq.write('x').cmd('/');
       assert.equal(mq.latex(), 'x\\frac{ }{ }');
     });
+
+    test('prevents nested math input via replacedFragment', function() {
+      mq.cmd('(').keystroke('Left').cmd('(')
+      assert.equal(mq.latex(), '\\left(\\right)');
+    });
   });
 
   suite('statelessClipboard option', function() {
