@@ -147,6 +147,9 @@ suite('latex', function() {
     // Adds missing cells
     assertParsesLatex('\\begin{Vmatrix}x&y\\\\1\\end{Vmatrix}', '\\begin{Vmatrix}x&y\\\\1&\\end{Vmatrix}');
     assertParsesLatex('\\begin{Vmatrix}x\\\\x&y\\\\x\\end{Vmatrix}', '\\begin{Vmatrix}x&\\\\x&y\\\\x&\\end{Vmatrix}');
+
+    // align*
+    assertParsesLatex('\\begin{align*}y&=ax^2+bx+c\\\\y&=mx+c\\end{align*}');
   });
 
   suite('public API', function() {

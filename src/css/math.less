@@ -50,7 +50,7 @@
 
   .mq-text-mode {
     display: inline-block;
-    white-space: pre;  
+    white-space: pre;
   }
 
   .mq-text-mode.mq-hasCursor {
@@ -311,7 +311,7 @@
     display: block;
     text-align: center;
   }
-  
+
   .mq-hat-prefix {
     display: block;
     text-align: center;
@@ -387,6 +387,18 @@
       &.mq-rows-1 { /* better alignment when there's just one row */
         vertical-align: middle;
         margin-bottom: 1px;
+      }
+
+      &.mq-rcl {
+        td:nth-child(1) {
+          text-align: right;
+        }
+        td:nth-child(2) {
+          text-align: center;
+        }
+        td:nth-child(3) {
+          text-align: left;
+        }
       }
     }
 
