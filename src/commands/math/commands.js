@@ -1328,7 +1328,7 @@ Environments['align*'] = P(TabularEnv, function(_, super_) {
     column: '&=',
     row: '\\\\'
   };
-  _.htmlColumnSeparator = '<td>=</td>';
+  _.htmlColumnSeparator = '<td class="mq-align-equal">=</td>';
   _.createBlocks = function() {
     this.blocks = [
       TabularCell(0, this),
@@ -1353,6 +1353,31 @@ Environments['align*'] = P(TabularEnv, function(_, super_) {
       // modifyNewRow callback adds column separator as middle cell
       newRow.find('td').eq(0).after(separator);
     });
+  };
+  // jQadd hack to keep the cursor in the correct row on seek
+  _.jQadd = function(jQ) {
+    var cmd = this, eachChild = this.eachChild;
+    jQ = super_.jQadd.call(this, jQ);
+
+    // Listen for mousedown on td.mq-align-equal descendants
+    // Handler will run just before `this.seek` is triggered by a similar
+    // listener in the controller.
+    jQ.delegate('td.mq-align-equal', 'mousedown.mathquill.alignenv', function (e) {
+      var tds = $(e.currentTarget).siblings('td');
+      var row = Fragment(
+        Node.byId[tds[0].getAttribute(mqBlockId)],
+        Node.byId[tds[1].getAttribute(mqBlockId)]
+      );
+
+      // Temporarily monkey-patch eachChild so that seek is limited
+      // to this row only.
+      // TODO - fix this properly
+      cmd.eachChild = function() {
+        row.each.apply(row, arguments);
+        cmd.eachChild = eachChild;
+      };
+    });
+    return jQ;
   };
 });
 
