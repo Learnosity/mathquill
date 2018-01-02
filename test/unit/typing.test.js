@@ -1214,7 +1214,7 @@ suite('typing with auto-replaces', function() {
     test('brackets are scaled immediately', function() {
       mq.write('\\begin{bmatrix}x\\end{bmatrix}');
       function bracketHeight() {
-        return $(mq.el()).find('.mq-matrix .mq-paren.mq-scaled')[0].getBoundingClientRect().height;
+        return $(mq.el()).find('.mq-tabular .mq-paren.mq-scaled')[0].getBoundingClientRect().height;
       }
       var height = bracketHeight();
       mq.keystroke('Left Shift-Enter');

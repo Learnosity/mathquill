@@ -374,7 +374,7 @@
     }
   }
 
-  .mq-matrix {
+  .mq-tabular {
     vertical-align: middle;
     margin-left: 0.1em;
     margin-right: 0.1em;
@@ -388,18 +388,6 @@
         vertical-align: middle;
         margin-bottom: 1px;
       }
-
-      &.mq-rcl {
-        td:nth-child(1) {
-          text-align: right;
-        }
-        td:nth-child(2) {
-          text-align: center;
-        }
-        td:nth-child(3) {
-          text-align: left;
-        }
-      }
     }
 
     td {
@@ -408,6 +396,17 @@
       padding: 0.1em 0.3em;
       vertical-align: baseline;
     }
-  }
 
+    &.mq-rcl {
+      td:nth-child(1) {
+        text-align: right;
+      }
+      td:nth-child(2) {
+        text-align: center;
+      }
+      td:nth-child(3) {
+        text-align: left;
+      }
+    }
+  }
 }
