@@ -290,21 +290,35 @@ x+\class{testclass}{y}+z
 <p>Mutiple consecutive spaces in the middle of a text mode block should not collapse into one space: <span class="mathquill-static-math">\text{three   spaces}</span></p>
 
 <h3>Matrix align* environments</h3>
-<p>align* environments should render with each row's = sign aligned, the LHS aligned right, and the RHS aligned left
+<p>align* environments should render in a similar manner to matrix environments, except their cell alignment occurs in the order {rlrlrlrl...}</p>
+    <span class="mathquill-static-math">
+        \begin{align*}
+\frac{3x + y}{7} &amp;&amp;= 9  &amp;&amp; \text{given}   \\
+3x + y &amp;&amp;= 63           &amp;&amp; \text{multiply by 7}   \\
+3x &amp;&amp;= 63 - y           &amp;&amp; \text{subtract y}   \\
+x &amp;&amp;= 21 - \frac{y}{3}  &amp;&amp; \text{divide by 3}   \\
+\end{align*}
+    </span>
+<p>They can align on any symbol prefixed by an &amp;</p>
+<span class="mathquill-static-math">
+    \begin{align*}
+ f(x) &amp;= x^4 + 7x^3 + 2x^2 \\
+      &amp;+ 10x + 12
+\end{align*}
+</span>
+<p>They may also have multiple equations per line</p>
   <span class="mathquill-static-math">
     \begin{align*}
-                  y &amp;= mx+c \\
-               y-c  &amp;= mx   \\
-      \frac{y-c}{m} &amp;= x
-    \end{align*}
+ f(x)  &amp;= a x^2+b x +c   &amp;   g(x)  &amp;= d x^3 \\
+ f'(x) &amp;= 2 a x +b       &amp;   g'(x) &amp;= 3 d x^2
+\end{align*}
   </span>
   </p>align* environments can be edited. New row: shift+enter.<p>
   <span class="mathquill-math-field">
-    \begin{align*}
-                  y &amp;= mx+c \\
-               y-c  &amp;= mx   \\
-      \frac{y-c}{m} &amp;= x
-    \end{align*}
+      \begin{align*}
+      f(x) &amp;= (x+a)(x+b) \\
+           &amp;= x^2 + (a+b)x + ab
+     \end{align*}
   </span>
 </p>
 
