@@ -1242,8 +1242,12 @@ LatexCmds.MathQuillVarField = P(MathCommand, function(_, super_) {
     +   '<span class="mq-root-block">&0</span>'
     + '</span>'
   ;
-  _.latex = function(){ return '{{var:' + this.ends[L].latex() + '}}'; };
-  _.text = function(){ return this.ends[L].text(); };
+  _.latex = function() {
+    return this.text();
+  };
+  _.text = function() {
+    return '{{var:' + this.jQ.find('[mathquill-command-id]').text() + '}}';
+  };
   _.finalizeTree = function() {
     var root = Node.byId[this.jQ.closest('.mq-root-block').attr(mqBlockId)],
     opts = root && root.controller && root.controller.API.__options || {};

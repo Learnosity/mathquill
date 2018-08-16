@@ -297,6 +297,26 @@ suite('latex', function() {
     });
   });
 
+  suite('\\MathQuillVarField', function() {
+    var mq;
+    setup(function() {
+      mq = MathQuill.MathField($('<span></span>').appendTo('#mock')[0]);
+    });
+    teardown(function() {
+      $(mq.el()).remove();
+    });
+
+    test('.latex() returns var expression', function() {
+      mq.write('\\MathQuillVarField{using}');
+      assert.equal(mq.latex(), '{{var:using}}');
+    });
+
+    test('.text() returns var expression', function() {
+      mq.write('\\MathQuillVarField{using}');
+      assert.equal(mq.text(), '{{var:using}}');
+    });
+  });
+
   suite('error handling', function() {
     var mq;
     setup(function() {
