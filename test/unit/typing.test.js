@@ -1024,6 +1024,42 @@ suite('typing with auto-replaces', function() {
       mq.latex('x_{}^y');
       assertLatex('x_{ }^y');
     });
+
+    test('subsup becomes polyatomic when space char is entered on the right of a non-empty subscript', function() {
+      mq.latex('x_y^z');
+      mq.keystroke('Down').typedText(' ');
+      assertLatex('x_y{}^z');
+    });
+
+    test('space doesnt make subsup polyatomic when there is no pre-existing superscript', function() {
+      mq.latex('x_y');
+      mq.keystroke('Left').typedText(' ');
+      assertLatex('x_{y\\ }');
+    });
+
+    test('space doesnt make subsup polyatomic when it is not pressed at the rightmost edge of the subscript', function() {
+      mq.latex('x_y^z');
+      mq.keystroke('Down Left').typedText(' ');
+      assertLatex('x_{\\ y}^z');
+    });
+
+    test('polyatomic status is removed on backspace at the rightmost edge of the polyatomic subscript', function() {
+      mq.latex('x_y{}^z');
+      mq.keystroke('Down Backspace');
+      assertLatex('x_y^z');
+    });
+
+    test('polyatomic status is removed if the subscript is removed', function() {
+      mq.latex('x_y{}^z');
+      mq.keystroke('Down Left Backspace');
+      assertLatex('xy^z');
+    });
+
+    test('polyatomic status is not removed if backspace is pressed somewhere in the middle of the subscript', function() {
+      mq.latex('x_{y2}{}^z');
+      mq.keystroke('Down Left Backspace');
+      assertLatex('x_2{}^z');
+    });
   });
 
 

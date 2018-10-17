@@ -398,16 +398,27 @@ var SupSub = P(MathCommand, function(_, super_) {
       }
       // Check if char was space and there's nothing to the right
       else if (ch === ' ' && !cursor[R]) {
-        // inserting polyatomic only when sub already exists
-        if (this.parent.supsub === 'sub' && this.parent.sub) {
-            var supsub = this.parent;
-            // setting correct class and flag for SupSub
-            supsub.polyatomic = this.parent.sub.latex().length > 0;
-            supsub.polyatomicClass();
-            return;
+        // inserting polyatomic only inside subscript when there's also a superscript
+        if (this === this.parent.sub && this.parent.sup) {
+          var supsub = this.parent;
+          // setting correct class and flag for SupSub
+          supsub.polyatomic = this.latex().length > 0;
+          supsub.polyatomicClass();
+          return;
         }
       }
       MathBlock.p.write.apply(this, arguments);
+    };
+    this.ends[L].keystroke = function(key, e, ctrlr) {
+      var supsub = this.parent;
+      // Remove polyatomic status when we press backspace at the rightmost
+      // cursor position of a polyatomic subscript
+      if (key === 'Backspace' && this === supsub.sub && supsub.polyatomic && !ctrlr.cursor[R]) {
+        supsub.polyatomic = false;
+        supsub.polyatomicClass();
+      } else {
+        MathBlock.p.keystroke.apply(this, arguments);
+      }
     };
     this.polyatomicClass();
   };
@@ -489,6 +500,8 @@ var SupSub = P(MathCommand, function(_, super_) {
         cmd[oppositeSupsub][updown+'OutOf'] = insLeftOfMeUnlessAtEnd;
         delete cmd[oppositeSupsub].deleteOutOf;
         if (supsub === 'sub') $(cmd.jQ.addClass('mq-sup-only')[0].lastChild).remove();
+        // Remove polyatomic status if either sub or sup is deleted
+        cmd.polyatomic = false;
         this.remove();
       };
     }(this, 'sub sup'.split(' ')[i], 'sup sub'.split(' ')[i], 'down up'.split(' ')[i]));
