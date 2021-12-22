@@ -1175,6 +1175,26 @@ suite('typing with auto-replaces', function() {
       assertLatex('\\begin{matrix}1&2&3\\\\4&5a&6\\\\7&8&9\\end{matrix}b');
     });
 
+    test('renders align* environment', function() {
+      // y = mx + c
+      mq.write('\\begin{align*}&=\\end{align*}');
+      mq.keystroke('Left Left').typedText('y')
+        .keystroke('Right').typedText('mx+c');
+      assertLatex('\\begin{align*}y&=mx+c\\end{align*}');
+
+      // Shift-Enter adds a new line.
+      //         y = mx + c
+      //     y - c = mx
+      // y - c / m = x
+      mq.keystroke('Shift-Enter Left')
+        .typedText('y-c').keystroke('Right').typedText('mx')
+        .keystroke('Shift-Enter Left')
+        .typedText('/y-c').keystroke('Down').typedText('m')
+        .keystroke('Right Right').typedText('x');
+
+      assertLatex('\\begin{align*}y&=mx+c\\\\y-c&=mx\\\\\\frac{y-c}{m}&=x\\end{align*}')
+    });
+
     test('delete key removes empty matrix row/column', function() {
       mq.write('\\begin{matrix}a&&b\\\\&c&d\\\\&e&f\\end{matrix}');
 
@@ -1194,7 +1214,7 @@ suite('typing with auto-replaces', function() {
     test('brackets are scaled immediately', function() {
       mq.write('\\begin{bmatrix}x\\end{bmatrix}');
       function bracketHeight() {
-        return $(mq.el()).find('.mq-matrix .mq-paren.mq-scaled')[0].getBoundingClientRect().height;
+        return $(mq.el()).find('.mq-tabular .mq-paren.mq-scaled')[0].getBoundingClientRect().height;
       }
       var height = bracketHeight();
       mq.keystroke('Left Shift-Enter');

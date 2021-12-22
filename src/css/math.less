@@ -50,7 +50,7 @@
 
   .mq-text-mode {
     display: inline-block;
-    white-space: pre;  
+    white-space: pre;
   }
 
   .mq-text-mode.mq-hasCursor {
@@ -311,7 +311,7 @@
     display: block;
     text-align: center;
   }
-  
+
   .mq-hat-prefix {
     display: block;
     text-align: center;
@@ -374,7 +374,7 @@
     }
   }
 
-  .mq-matrix {
+  .mq-tabular {
     vertical-align: middle;
     margin-left: 0.1em;
     margin-right: 0.1em;
@@ -396,6 +396,17 @@
       padding: 0.1em 0.3em;
       vertical-align: baseline;
     }
-  }
 
+    &.mq-rcl {
+      td:nth-child(1) {
+        text-align: right;
+      }
+      td:nth-child(2) {
+        text-align: center;
+      }
+      td:nth-child(3) {
+        text-align: left;
+      }
+    }
+  }
 }

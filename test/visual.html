@@ -289,6 +289,25 @@ x+\class{testclass}{y}+z
 
 <p>Mutiple consecutive spaces in the middle of a text mode block should not collapse into one space: <span class="mathquill-static-math">\text{three   spaces}</span></p>
 
+<h3>Matrix align* environments</h3>
+<p>align* environments should render with each row's = sign aligned, the LHS aligned right, and the RHS aligned left
+  <span class="mathquill-static-math">
+    \begin{align*}
+                  y &amp;= mx+c \\
+               y-c  &amp;= mx   \\
+      \frac{y-c}{m} &amp;= x
+    \end{align*}
+  </span>
+  </p>align* environments can be edited. New row: shift+enter.<p>
+  <span class="mathquill-math-field">
+    \begin{align*}
+                  y &amp;= mx+c \\
+               y-c  &amp;= mx   \\
+      \frac{y-c}{m} &amp;= x
+    \end{align*}
+  </span>
+</p>
+
 </div>
 <script type="text/javascript">
 window.onerror = function(err) {
